@@ -18,32 +18,31 @@
 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 * THE SOFTWARE.
-*/
+ */
 
 package beego_security_headers
 
 import (
-    "github.com/astaxie/beego"
-    "github.com/astaxie/beego/context"
+	"github.com/beego/beego/v2/server/web"
+	"github.com/beego/beego/v2/server/web/context"
 )
 
 /**
-* Function to read HTTP request headers and add HTTP response headers
-* the HTTP Response headers come from the app.conf file (defined by the user).
-**/
+ * Function to read HTTP request headers and add HTTP response headers
+ * the HTTP Response headers come from the app.conf file (defined by the user).
+ **/
 func Finish(ctx *context.Context) {
-    var config map[string]string
+	var config map[string]string
 
-    config, err := beego.AppConfig.GetSection("secheaders")
+	config, err := web.AppConfig.GetSection("secheaders")
 
-    if err == nil {
-        for k, v := range config {
-            ctx.Output.Header(k, v)
-        }
-    }
+	if err == nil {
+		for k, v := range config {
+			ctx.Output.Header(k, v)
+		}
+	}
 }
 
 func Init() {
-    beego.InsertFilter("/*", beego.BeforeExec, Finish, false)
+	web.InsertFilter("/*", web.BeforeExec, Finish, nil)
 }
-
