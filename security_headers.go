@@ -33,9 +33,7 @@ import (
  **/
 func Finish(ctx *context.Context) {
 	var config map[string]string
-
 	config, err := web.AppConfig.GetSection("secheaders")
-
 	if err == nil {
 		for k, v := range config {
 			ctx.Output.Header(k, v)
