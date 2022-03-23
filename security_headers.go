@@ -44,5 +44,5 @@ func Finish(ctx *context.Context) {
 }
 
 func Init() {
-	web.InsertFilter("/*", web.BeforeExec, Finish, nil)
+	web.InsertFilter("/*", web.BeforeExec, Finish)
 }
