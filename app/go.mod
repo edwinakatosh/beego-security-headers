@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/beego/beego/v2 v2.0.2
-	github.com/edwinakatosh/beego-security-headers v0.1.4
+	github.com/edwinakatosh/beego-security-headers v0.1.3
 )
 
 require (
