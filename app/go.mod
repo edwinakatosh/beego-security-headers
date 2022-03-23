@@ -4,11 +4,10 @@ go 1.18
 
 require (
 	github.com/beego/beego/v2 v2.0.2
-	github.com/edwinakatosh/beego-security-headers v0.1.3
+	github.com/edwinakatosh/beego-security-headers v0.1.4
 )
 
 require (
-	github.com/astaxie/beego v1.12.3 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
