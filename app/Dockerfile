@@ -3,13 +3,15 @@ ENV GO111MODULE=on \
     GOOS=linux GOARCH=amd64 \
     CGO_ENABLED=0
 ARG COMMIT
-WORKDIR /build
+WORKDIR /go/src/app
 # Copy the code necessary to build the application
 # You may want to change this to copy only what you actually need.
 ADD . .
 # Build the application
 RUN env
 RUN set -x \
+    && go mod tidy -v \
+    && go mod download \
     && go build -v -ldflags "-w -s" .
 RUN set -x \
     && ls -Altr && pwd
@@ -17,8 +19,7 @@ RUN set -x \
 # Later, it will be copied as the / (root) of the output image.
 WORKDIR /dist
 RUN set -x \
-    && cd /build \
-    && cp -r app /dist/
+    && cp -r /go/src/app/app /go/src/app/conf /go/src/app/views /dist/
 # Create the minimal runtime image
 FROM alpine:latest
 ENV BEEGO_RUNMODE=dev
